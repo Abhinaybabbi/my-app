@@ -4,6 +4,7 @@ import './App.css';
 import Sidebar from './components/Filter';
 import Items from './components/itemspage/index';
 import Nav from './components/Navbar/index2';
+import axios from "axios";
 
 
 function App() {  
@@ -17,38 +18,37 @@ function App() {
     }, []);
 
 
-
+//fetching data from api
     const apiurl = "https://fakestoreapi.com/products";
-    const fetchitems = () => {
-        fetch(apiurl)
+    const fetchitems = async() => {
+        await fetch(apiurl)
             .then((res) => res.json())
+            
             .then((data) => setProducts(data))
             
 
     };
-    const datadb=()=>{
+
+    //sending data from api to backend  
+    const datadb=async ()=>{
       const data = JSON.stringify(products);
       console.log(data);
-      fetch('https://localhost:5000/data', {
-        method: 'POST', // or 'PUT'
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+      await axios.post('http://localhost:5000/data', {
+        body:JSON.stringify(data)
       })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
+      .then(function (response) {
+        console.log(response);
       })
-      .catch((error) => {
-        console.error('Error:', error);
+      .catch(function (error) {
+        console.log(error);
       });
     }
-
+    // click handler 
     const handleclick = ()=>{
       setClicks(clicks+1)
 
     }
+    //cart handler
     const handlecart = (product)=>{
       const exist = cart.find((x)=>x.id === product.id);
       if(exist){
@@ -60,18 +60,19 @@ function App() {
     
 
   return (
-    <div className='relative flex' >
-    <Nav clicks = {clicks} cartitems ={cart}/>
+    <div className='relative flex ' >
+    <Nav clicks = {clicks} cartitems ={cart} />
     
     {/* <div className='flex'>
     <Sidebar/>
     </div> */}
-    <div className='flex ml-60'>
+    <div className='flex flex-col items-center ml-60'>
     
     <Items products={products} handleclick={handleclick} handlecart ={handlecart} cartitems={cart}/>
     <h1>no of clicks:{clicks}</h1>
 
     </div>
+    
     <div className="flex fixed mt-12">
     <div className="  m-9">
             <h3><strong>Cart Items:</strong></h3>

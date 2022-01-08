@@ -1,6 +1,6 @@
 
 const Nav = (props) => {
-  const {clicks , cartitems}=props;
+  const {clicks , cartitems, setshowcart}=props;
  
 
     let Links =[
@@ -38,7 +38,7 @@ const Nav = (props) => {
         <h3>No of clicks on items: <strong>{clicks}</strong></h3>
       </div>
       <div id="cart">
-        <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" ><strong>Cart : {cartitems.length}</strong></button>
+        <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"  ><strong>Cart : {cartitems.length}</strong></button>
 
       </div>
     

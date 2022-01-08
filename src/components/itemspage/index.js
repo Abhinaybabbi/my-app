@@ -19,7 +19,7 @@ function Items(props) {
                   <img
                     src={product.image}
                     alt="items"
-                    className="w-auto h-60 object-center object-cover group-hover:opacity-75"
+                    className="w-auto h-60 object-contain object-cover group-hover:opacity-75"
                   />
                   <p className=" text-sm bg-grey-200 text-black font-semibold">{product.rating.rate}⭐ | ({product.rating.count})</p>
                   
