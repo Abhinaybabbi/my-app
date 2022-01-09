@@ -20,7 +20,8 @@ function App() {
 
 
 //fetching data from api
-    const apiurl = "https://fakestoreapi.com/products";
+    // const apiurl = "https://fakestoreapi.com/products";
+    // You can Find link to backend code in my repo https://github.com/Abhinaybabbi/Myntra-clone
     const apiurl1 ="http://localhost:5000/";
     const fetchitems = async() => {
         await fetch(apiurl1)
