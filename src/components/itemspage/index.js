@@ -21,7 +21,7 @@ function Items(props) {
                     alt="items"
                     className="w-auto h-60 object-contain object-cover group-hover:opacity-75"
                   />
-                  <p className=" text-sm bg-grey-200 text-black font-semibold">{product.rating.rate}⭐ | ({product.rating.count})</p>
+                  <p className=" text-sm bg-grey-200 text-black font-semibold">{product.rating[0].rate}⭐ | ({product.rating[0].count})</p>
                   
                 </div>
                 <h3 className="mt-4 text-sm font-bold text-black">{product.title}</h3>

@@ -1,6 +1,6 @@
 
 const Nav = (props) => {
-  const {clicks , cartitems, setshowcart}=props;
+  const {clicks , cartitems, fetchdata}=props;
  
 
     let Links =[
@@ -39,6 +39,8 @@ const Nav = (props) => {
       </div>
       <div id="cart">
         <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"  ><strong>Cart : {cartitems.length}</strong></button>
+        <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" onClick={fetchdata()} ><strong>Fetch data </strong></button>
+
 
       </div>
     

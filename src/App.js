@@ -11,32 +11,33 @@ function App() {
   const [products, setProducts] = useState([]);
   const [cart,setCart]= useState([]);
   const [clicks,setClicks] = useState(0);
+  
 
-    useEffect(() => {
+    useEffect(async() => {
         fetchitems();
-        datadb();
+        
     }, []);
 
 
 //fetching data from api
     const apiurl = "https://fakestoreapi.com/products";
+    const apiurl1 ="http://localhost:5000/";
     const fetchitems = async() => {
-        await fetch(apiurl)
+        await fetch(apiurl1)
             .then((res) => res.json())
             
-            .then((data) => setProducts(data))
+            .then((y) => setProducts(y.data[0].data))
+          
             
 
     };
 
     //sending data from api to backend  
     const datadb=async ()=>{
-      const data = JSON.stringify(products);
+      const data = products;
       console.log(data);
-      await axios.post('http://localhost:5000/data', {
-        body:JSON.stringify(data)
-      })
-      .then(function (response) {
+      await axios.post('http://localhost:5000/data', data)
+      .then((response)=>{
         console.log(response);
       })
       .catch(function (error) {
@@ -61,7 +62,7 @@ function App() {
 
   return (
     <div className='relative flex ' >
-    <Nav clicks = {clicks} cartitems ={cart} />
+    <Nav clicks = {clicks} cartitems ={cart} fetchdata = {()=>datadb} />
     
     {/* <div className='flex'>
     <Sidebar/>
